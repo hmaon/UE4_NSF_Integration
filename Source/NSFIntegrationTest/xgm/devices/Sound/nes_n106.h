@@ -54,7 +54,7 @@ protected:
 
 public:
     NES_N106 ();
-    ~NES_N106 ();
+    virtual ~NES_N106 ();
 
     virtual void Reset ();
     virtual void Tick (UINT32 clocks);

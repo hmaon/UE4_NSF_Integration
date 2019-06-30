@@ -15,11 +15,23 @@
 #include "sstream.h"
 #define BLK_SIZE (32)
 
+extern "C"
+{
+#include "../../../print_time.h"
+}
+
+
+#ifndef is_sjis_prefix
+#define is_sjis_prefix(c) ((0x81<=c&&c<=0x9F)||(0xE0<=c&&c<=0xFC)) 
+#endif
+
+#if false
 static bool is_sjis_prefix(int c)
 {
   if((0x81<=c&&c<=0x9F)||(0xE0<=c&&c<=0xFC)) return true ;
   else return false ;
 }
+#endif
 
 static void skip_space(SST *sst)
 { 
@@ -324,26 +336,26 @@ void PLSITEM_delete(PLSITEM *elem)
   free(elem) ;
 }
 
-static char *print_time(int time)
-{
-  static char buf[32] ;
-  int h,m,s,ss = 0 ;
-
-  if(time<0) return "" ;
-
-  ss = (time%1000) / 10 ;
-  time /= 1000 ;
-  s = time%60 ;
-  time /= 60 ;
-  m = time%60 ;
-  time /= 60 ;
-  h = time ;
-  
-  if(h) sprintf(buf,"%02d:%02d:%02d",h,m,s) ;
-  else sprintf(buf,"%02d:%02d",m,s) ;
-
-  return buf ;
-}
+//static char *print_time(int time)
+//{
+//  static char buf[32] ;
+//  int h,m,s,ss = 0 ;
+//
+//  if(time<0) return "" ;
+//
+//  ss = (time%1000) / 10 ;
+//  time /= 1000 ;
+//  s = time%60 ;
+//  time /= 60 ;
+//  m = time%60 ;
+//  time /= 60 ;
+//  h = time ;
+//  
+//  if(h) sprintf(buf,"%02d:%02d:%02d",h,m,s) ;
+//  else sprintf(buf,"%02d:%02d",m,s) ;
+//
+//  return buf ;
+//}
 
 static void splitpath(char *fn, char *path, char *file)
 {

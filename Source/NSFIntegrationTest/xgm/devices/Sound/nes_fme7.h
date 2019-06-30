@@ -23,7 +23,7 @@ namespace xgm
     TrackInfoBasic trkinfo[5];
   public:
       NES_FME7 ();
-     ~NES_FME7 ();
+    virtual ~NES_FME7 ();
     virtual void Reset ();
     virtual void Tick (UINT32 clocks);
     virtual UINT32 Render (INT32 b[2]);

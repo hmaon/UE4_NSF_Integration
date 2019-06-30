@@ -8,6 +8,7 @@
 extern "C"
 {
 #include "pls/ppls.h"
+#include "../../print_time.h"
 }
 
 namespace xgm
@@ -22,11 +23,17 @@ static char nsfe_error_[NSFE_ERROR_SIZE];
 static const char* nsfe_error = "(no NSFe loaded)";
 static const char* nsf_error = "(no NSF loaded)";
 
+#ifndef is_sjis_prefix
+#define is_sjis_prefix(c) ((0x81<=c&&c<=0x9F)||(0xE0<=c&&c<=0xFC)) 
+#endif
+
+#if false
 static bool is_sjis_prefix(int c)
 {
   if((0x81<=c&&c<=0x9F)||(0xE0<=c&&c<=0xFC)) return true ;
   else return false ;
 }
+#endif
 
   NSF::NSF ():SoundDataMSP ()
   {
@@ -58,29 +65,29 @@ static bool is_sjis_prefix(int c)
     default_loopnum = l;
   }
 
-  static char *print_time (int time)
-  {
-    static char buf[32];
-    int h, m, s, ss = 0;
+  //static char *print_time (int time)
+  //{
+  //  static char buf[32];
+  //  int h, m, s, ss = 0;
 
-    if (time < 0)
-      return "";
+  //  if (time < 0)
+  //    return "";
 
-    ss = (time % 1000) / 10;
-    time /= 1000;
-    s = time % 60;
-    time /= 60;
-    m = time % 60;
-    time /= 60;
-    h = time;
+  //  ss = (time % 1000) / 10;
+  //  time /= 1000;
+  //  s = time % 60;
+  //  time /= 60;
+  //  m = time % 60;
+  //  time /= 60;
+  //  h = time;
 
-    if (h)
-      sprintf (buf, "%02d:%02d:%02d", h, m, s);
-    else
-      sprintf (buf, "%02d:%02d", m, s);
+  //  if (h)
+  //    sprintf (buf, "%02d:%02d:%02d", h, m, s);
+  //  else
+  //    sprintf (buf, "%02d:%02d", m, s);
 
-    return buf;
-  }
+  //  return buf;
+  //}
 
   char *NSF::GetPlaylistString (const char *format, bool b)
   {

@@ -168,13 +168,19 @@ static int time2int(char *time)
   return ret * 1000;
 }
 
-static inline bool is_sjis_prefix(int c)
+#ifndef is_sjis_prefix
+#define is_sjis_prefix(c) ((0x81<=c&&c<=0x9F)||(0xE0<=c&&c<=0xFC)) 
+#endif
+
+#if false
+static bool is_sjis_prefix(int c)
 {
   if((0x81<=c&&c<=0x9F)||(0xE0<=c&&c<=0xFC)) 
     return true ;
   else 
     return false ;
 }
+#endif
 
 int NSF_TAG::ReadTagItem(int song)
 {

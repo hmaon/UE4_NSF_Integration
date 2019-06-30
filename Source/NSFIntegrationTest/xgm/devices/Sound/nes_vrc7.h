@@ -30,7 +30,7 @@ namespace xgm
     bool use_all_channels;
   public:
       NES_VRC7 ();
-     ~NES_VRC7 ();
+    virtual ~NES_VRC7 ();
 
     virtual void Reset ();
     virtual void Tick (UINT32 clocks);

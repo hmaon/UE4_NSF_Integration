@@ -65,7 +65,7 @@ namespace xgm
 
   public:
       NES_APU ();
-     ~NES_APU ();
+    virtual ~NES_APU ();
 
     void FrameSequence(int s);
 
