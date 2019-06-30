@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"> 
+<assemblyIdentity 
+    version="1.0.0.0" 
+    processorArchitecture="X86" 
+    name="Microsoft.Windows.win32"
+    type="win32" 
+/> 
+<description>繧｢繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ縺ｮ隱ｬ譏弱ｒ縺薙％縺ｫ謖ｿ蜈･縺励∪縺吶
