@@ -1,5 +1,4 @@
-#ifndef _XTYPES_H_
-#define _XTYPES_H_
+#pragma once
 
 #if defined(_MSC_VER)
 #define INLINE __forceinline
@@ -30,5 +29,3 @@ typedef signed int INT32;
 /** 64bit signed */
 typedef signed long long INT64;
 }
-
-#endif

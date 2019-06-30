@@ -22,10 +22,10 @@ static char nsfe_error_[NSFE_ERROR_SIZE];
 static const char* nsfe_error = "(no NSFe loaded)";
 static const char* nsf_error = "(no NSF loaded)";
 
-static int is_sjis_prefix(int c)
+static bool is_sjis_prefix(int c)
 {
-  if((0x81<=c&&c<=0x9F)||(0xE0<=c&&c<=0xFC)) return 1 ;
-  else return 0 ;
+  if((0x81<=c&&c<=0x9F)||(0xE0<=c&&c<=0xFC)) return true ;
+  else return false ;
 }
 
   NSF::NSF ():SoundDataMSP ()
@@ -272,8 +272,8 @@ static int is_sjis_prefix(int c)
     const char* ext = strchr(fn,'.');
     if (ext)
     {
-      const char* ext_next;
-      while (ext_next = strchr(ext+1,'.')) ext = ext_next;
+      const char* ext_next = ext;
+	  for (; ext_next; ext_next = strchr(ext + 1, '.')) ext = ext_next;
     }
     else ext = "";
 

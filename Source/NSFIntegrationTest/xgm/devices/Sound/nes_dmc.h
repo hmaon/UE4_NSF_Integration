@@ -26,7 +26,7 @@ namespace xgm
       OPT_END 
     };
   protected:
-    const int GETA_BITS;
+	const int GETA_BITS{ 20 };
     static const UINT32 freq_table[2][16];
     static const UINT32 wavlen_table[2][16];
     UINT32 tnd_table[2][16][16][128];

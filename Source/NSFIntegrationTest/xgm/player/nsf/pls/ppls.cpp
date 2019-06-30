@@ -15,10 +15,10 @@
 #include "sstream.h"
 #define BLK_SIZE (32)
 
-static int is_sjis_prefix(int c)
+static bool is_sjis_prefix(int c)
 {
-  if((0x81<=c&&c<=0x9F)||(0xE0<=c&&c<=0xFC)) return 1 ;
-  else return 0 ;
+  if((0x81<=c&&c<=0x9F)||(0xE0<=c&&c<=0xFC)) return true ;
+  else return false ;
 }
 
 static void skip_space(SST *sst)

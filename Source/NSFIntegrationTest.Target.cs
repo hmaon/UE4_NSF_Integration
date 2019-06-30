@@ -9,8 +9,8 @@ public class NSFIntegrationTestTarget : TargetRules
 	{
 		Type = TargetType.Game;
 
-		bUseUnityBuild = false;
-		bUsePCHFiles = false;
+		//bUseUnityBuild = false;
+		//bUsePCHFiles = false;
 
 		ExtraModuleNames.AddRange( new string[] { "NSFIntegrationTest" } );
 	}

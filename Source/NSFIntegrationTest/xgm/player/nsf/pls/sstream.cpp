@@ -17,8 +17,9 @@
 SST *SST_new(void)
 {
   SST *sst ;
-
-  if(!(sst = (SST *)malloc(sizeof(SST)))) return NULL ;
+	
+  sst = (SST*)malloc(sizeof(SST));
+  if(!sst) return NULL ;
   sst->index = 0 ;
   sst->length = 0 ;
   sst->size = 0 ;
@@ -41,7 +42,8 @@ int SST_set_text(SST *sst, const char *str)
   if(sst->str) return -1 ;
 
   sst->size = strlen(str) + 1 ;
-  if(!(sst->str = (unsigned char *)malloc(sst->size))) return -1 ;
+  sst->str = (unsigned char*)malloc(sst->size);
+  if(!sst->str) return -1 ;
   strcpy((char *)sst->str,str) ;
   sst->index = 0 ;
   sst->length = sst->size - 1 ;
@@ -98,7 +100,8 @@ int SST_putc(SST *sst, int c)
   {
     if( (sst->size-1) <= sst->index )
     {
-      if(!(sst->str=(unsigned char *)realloc(sst->str,sst->size+SST_BUF_GSIZE))) return -1 ;
+      sst->str = (unsigned char*)realloc(sst->str, sst->size + SST_BUF_GSIZE);
+      if(!sst->str) return -1 ;
       for(i=0;i<SST_BUF_GSIZE;i++) sst->str[sst->size+i] = '\0' ;
       sst->size += SST_BUF_GSIZE ;
     }

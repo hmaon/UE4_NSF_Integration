@@ -19,7 +19,7 @@ namespace xgm
     398, 354, 316, 298, 276, 236, 210, 198, 176, 148, 132, 118,  98, 78, 66, 50
   }};
 
-  NES_DMC::NES_DMC () : GETA_BITS (20)
+  NES_DMC::NES_DMC () 
   {
     SetClock (DEFAULT_CLOCK);
     SetRate (DEFAULT_RATE);

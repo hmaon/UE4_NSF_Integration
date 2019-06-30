@@ -21,7 +21,7 @@ namespace xgm
   /**
    * NSFファイル型
    */
-  class NSF : public SoundDataMSP
+  class NSF : SoundDataMSP
   {
   public:
     char magic[5];
