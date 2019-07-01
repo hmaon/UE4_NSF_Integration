@@ -6,7 +6,12 @@
 #include "Components/SynthComponent.h"
 #include "DSP/Osc.h"
 #include "xgm/player/nsf/nsfplay.h"
+
+#include <vector>
+
 #include "NSFSynthComponent.generated.h"
+
+using namespace std;
 
 // ========================================================================
 // UNSFSynthComponent
@@ -31,10 +36,14 @@ class NSFINTEGRATIONTEST_API UNSFSynthComponent : public USynthComponent
 	UFUNCTION(BlueprintCallable, Category = "Synth|Components|Audio")
 	void SetFrequency(const float FrequencyHz = 440.0f);
 
+
 protected:
 	// A simple oscillator class. Can also generate Saw/Square/Tri/Noise.
 	//Audio::FOsc Osc;
 
 	xgm::NSFPlayerConfig NSFPlayerConfig;
+	xgm::NSF NSF;
 	xgm::NSFPlayer NSFPlayer;
+
+	vector<INT16> tempBuffer;
 };

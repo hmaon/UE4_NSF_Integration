@@ -114,7 +114,7 @@ namespace xgm
     ~NSFPlayer ();
 
     /** コンフィグ情報のセット */
-    virtual void SetConfig(NSFPlayerConfig * config) ;
+    virtual void SetConfig(PlayerConfig * config) override;
 
     /** データをロードする */
     virtual bool Load (NSF * sdat);

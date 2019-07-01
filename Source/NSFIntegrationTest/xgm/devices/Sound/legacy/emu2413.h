@@ -15,7 +15,9 @@
 extern "C" {
 #endif
 
+#ifndef PI
 #define PI 3.14159265358979323846
+#endif
 
 enum OPLL_TONE_ENUM {
     OPLL_VRC7_RW_TONE = 0,

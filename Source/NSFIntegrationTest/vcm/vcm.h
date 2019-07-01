@@ -1,5 +1,5 @@
-#ifndef _VCM_H_
-#define _VCM_H_
+#pragma once
+
 //
 // Versatile Configuration Management Library
 //
@@ -56,6 +56,8 @@ namespace vcm
   protected:
     std::set<ObserverI *>oblist;
   public:
+    virtual ~Observable() {}
+
     virtual void AttachObserver(ObserverI *p)
     {
       oblist.insert(p);
@@ -91,12 +93,15 @@ namespace vcm
   class Configuration : public Observable
   {
   protected:
+
     std::map < std::string, Value > data;
 
     // thread safety
-    FCriticalSection mutex;
+    static FCriticalSection mutex;
 
   public:
+
+	virtual ~Configuration() {}
 
     // 値を読む．無ければエラー．
     Value &operator[]( const std::string id )
@@ -157,5 +162,3 @@ namespace vcm
 } // namespace vcm
 
 #include "vcm_ui.h"
-
-#endif

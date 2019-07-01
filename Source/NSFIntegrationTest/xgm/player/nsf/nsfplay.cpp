@@ -53,10 +53,10 @@ namespace xgm
     delete logcpu;
   }
 
-  void NSFPlayer::SetConfig(NSFPlayerConfig * config)
+  void NSFPlayer::SetConfig(PlayerConfig * pc)
   {
-    //config = dynamic_cast<NSFPlayerConfig *>(pc);
-    PlayerMSP::SetConfig(config);
+    config = (NSFPlayerConfig *)pc;
+    PlayerMSP::SetConfig(pc);
   }
 
   bool NSFPlayer::IsDetected ()
@@ -988,7 +988,8 @@ void NSFPlayer::SetPlayFreq (double r)
 
   bool NSFPlayer::Load(SoundData* sdat)
   {
-	  return false;
+	  return Load((NSF*)sdat);
+	  //return false;
   }
 
 }

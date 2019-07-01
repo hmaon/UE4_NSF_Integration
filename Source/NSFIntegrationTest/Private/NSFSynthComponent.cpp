@@ -12,6 +12,13 @@ bool UNSFSynthComponent::Init(int32& SampleRate)
 	//Osc.SetFrequency(440.0f);
 	//Osc.Start();
 
+	ensure(NSF.LoadFile("i:\\wtf\\emu\\nsf\\tetris.nsf"));
+	NSFPlayer.SetConfig(&NSFPlayerConfig);
+	NSFPlayer.Load(&NSF);
+	NSFPlayer.SetPlayFreq(48000.0);
+	NSFPlayer.SetChannels(1);
+	NSFPlayer.SetSong(1);
+
 	return true;
 }
 
@@ -22,6 +29,15 @@ int32 UNSFSynthComponent::OnGenerateAudio(float* OutAudio, int32 NumSamples)
 	//{
 	//	OutAudio[Sample] = Osc.Generate();
 	//}
+
+	tempBuffer.resize(NumSamples);
+
+	NSFPlayer.Render((INT16*)tempBuffer.data(), NumSamples);
+
+	for (int i = 0; i < NumSamples; i++)
+	{
+		OutAudio[i] = ((float)tempBuffer[i]) / 0x7FFF;
+	}
 
 	return NumSamples;
 }
