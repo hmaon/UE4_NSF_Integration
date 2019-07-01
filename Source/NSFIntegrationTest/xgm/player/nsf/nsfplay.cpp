@@ -986,5 +986,10 @@ void NSFPlayer::SetPlayFreq (double r)
       return REGION_NTSC;
   }
 
+  bool NSFPlayer::Load(SoundData* sdat)
+  {
+	  return false;
+  }
+
 }
 

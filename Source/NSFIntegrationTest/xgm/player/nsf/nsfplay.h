@@ -181,7 +181,10 @@ namespace xgm
         REGION_PAL,
         REGION_DENDY
     };
-  };
+
+	// Inherited via PlayerMSP
+	virtual bool Load(SoundData* sdat) override;
+};
 
 }// namespace
 

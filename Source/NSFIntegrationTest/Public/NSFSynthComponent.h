@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Components/SynthComponent.h"
 #include "DSP/Osc.h"
+#include "xgm/player/nsf/nsfplay.h"
 #include "NSFSynthComponent.generated.h"
 
 // ========================================================================
@@ -15,7 +16,7 @@
 // the frequency. 
 // ========================================================================
 
-UCLASS(ClassGroup = Synth, meta = (BlueprintSpawnableComponent))
+UCLASS(Blueprintable, BlueprintType, ClassGroup = Synth, meta = (BlueprintSpawnableComponent))
 class NSFINTEGRATIONTEST_API UNSFSynthComponent : public USynthComponent
 {
 	GENERATED_BODY()
@@ -32,5 +33,8 @@ class NSFINTEGRATIONTEST_API UNSFSynthComponent : public USynthComponent
 
 protected:
 	// A simple oscillator class. Can also generate Saw/Square/Tri/Noise.
-	Audio::FOsc Osc;
+	//Audio::FOsc Osc;
+
+	xgm::NSFPlayerConfig NSFPlayerConfig;
+	xgm::NSFPlayer NSFPlayer;
 };
