@@ -32,10 +32,11 @@ class NSFINTEGRATIONTEST_API UNSFSynthComponent : public USynthComponent
 	// Called to generate more audio
 	virtual int32 OnGenerateAudio(float* OutAudio, int32 NumSamples) override;
 
-	// Sets the oscillator's frequency
-	UFUNCTION(BlueprintCallable, Category = "Synth|Components|Audio")
-	void SetFrequency(const float FrequencyHz = 440.0f);
+	//// Sets the oscillator's frequency
+	//UFUNCTION(BlueprintCallable, Category = "Synth|Components|Audio")
+	//void SetFrequency(const float FrequencyHz = 440.0f);
 
+	virtual void OnStart() override;
 
 protected:
 	// A simple oscillator class. Can also generate Saw/Square/Tri/Noise.

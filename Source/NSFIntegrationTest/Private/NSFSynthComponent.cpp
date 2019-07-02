@@ -12,12 +12,15 @@ bool UNSFSynthComponent::Init(int32& SampleRate)
 	//Osc.SetFrequency(440.0f);
 	//Osc.Start();
 
-	ensure(NSF.LoadFile("i:\\wtf\\emu\\nsf\\tetris.nsf"));
+	//NSF.SetDefaults(0, 0, 0);
+	ensure(NSF.LoadFile("i:\\wtf\\emu\\nsf\\rcr.nsf"));
+	//NSFPlayerConfig.SetValue
 	NSFPlayer.SetConfig(&NSFPlayerConfig);
 	NSFPlayer.Load(&NSF);
-	NSFPlayer.SetPlayFreq(48000.0);
+	NSFPlayer.SetPlayFreq((double)SampleRate);
 	NSFPlayer.SetChannels(1);
 	NSFPlayer.SetSong(1);
+	NSFPlayer.Reset();
 
 	return true;
 }
@@ -32,22 +35,29 @@ int32 UNSFSynthComponent::OnGenerateAudio(float* OutAudio, int32 NumSamples)
 
 	tempBuffer.resize(NumSamples);
 
-	NSFPlayer.Render((INT16*)tempBuffer.data(), NumSamples);
+	UINT32 ret = this->NSFPlayer.Render((INT16*)tempBuffer.data(), NumSamples);
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 0.3f, FColor::Yellow, *FString::Printf(TEXT("ret == %d"), ret));
 
 	for (int i = 0; i < NumSamples; i++)
 	{
-		OutAudio[i] = ((float)tempBuffer[i]) / 0x7FFF;
+		OutAudio[i] = ((float)this->tempBuffer[i]) / 0x7FFF;
 	}
 
 	return NumSamples;
 }
 
-void UNSFSynthComponent::SetFrequency(const float InFrequencyHz)
+void UNSFSynthComponent::OnStart()
 {
-	// Use this protected base class method to push a lambda function which will safely execute in the audio render thread.
-	//SynthCommand([this, InFrequencyHz]()
-	//{
-	//	Osc.SetFrequency(InFrequencyHz);
-	//	Osc.Update();
-	//});
+	NSFPlayer.Reset();
 }
+
+//void UNSFSynthComponent::SetFrequency(const float InFrequencyHz)
+//{
+//	// Use this protected base class method to push a lambda function which will safely execute in the audio render thread.
+//	//SynthCommand([this, InFrequencyHz]()
+//	//{
+//	//	Osc.SetFrequency(InFrequencyHz);
+//	//	Osc.Update();
+//	//});
+//}

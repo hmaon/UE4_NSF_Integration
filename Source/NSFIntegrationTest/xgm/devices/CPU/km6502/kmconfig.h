@@ -106,4 +106,9 @@ typedef unsigned char Ubyte;			/* unsigned 8bit integer for table */
 #define OpcodeCall Inline
 #endif
 
+// let me goddamn debug, holy shit
+#undef Inline
+#define Inline
+
+
 #endif	/* KMCONFIG_H_ */

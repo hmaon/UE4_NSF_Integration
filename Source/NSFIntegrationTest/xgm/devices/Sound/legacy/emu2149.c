@@ -19,6 +19,10 @@
     AY-3-8910 data sheet
     
 *****************************************************************************/
+
+// per https://social.msdn.microsoft.com/Forums/sqlserver/en-US/9759b56f-469b-4795-899e-a1ab4ce82df2/cplusplus-is-not-defined-as-a-preprocessor-macro-replacing-with-0-for-ifelif?forum=vcgeneral
+#define _CRT_HAS_CXX17 0
+
 #include "emu2149.h"
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,3 +1,6 @@
+#undef Inline
+#define Inline
+
 #define OP__(i) \
 	case 0x##i##: \
 		Opcode##i##(__THISP); \

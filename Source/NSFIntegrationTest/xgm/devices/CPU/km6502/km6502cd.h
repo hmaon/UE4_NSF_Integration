@@ -1,3 +1,6 @@
+#undef Inline
+#define Inline
+
 static void Inline KI_ADDCLOCK(__CONTEXT_ Uword cycle)
 {
 #if BUILD_HUC6280

@@ -4,6 +4,9 @@
 
 #include "km6502.h"
 
+#undef Inline
+#define Inline
+
 #define C_FLAG K6502_C_FLAG
 #define Z_FLAG K6502_Z_FLAG
 #define I_FLAG K6502_I_FLAG
