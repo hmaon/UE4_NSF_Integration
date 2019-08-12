@@ -38,6 +38,14 @@ class NSFINTEGRATIONTEST_API UNSFSynthComponent : public USynthComponent
 
 	virtual void OnStart() override;
 
+public:
+
+	UPROPERTY(BlueprintReadOnly)
+	bool LoadedSuccessfully = false;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FString PathToMusic = ".\\sample.nsf";
+
 protected:
 	// A simple oscillator class. Can also generate Saw/Square/Tri/Noise.
 	//Audio::FOsc Osc;
@@ -47,4 +55,6 @@ protected:
 	xgm::NSFPlayer NSFPlayer;
 
 	vector<INT16> tempBuffer;
+
+	int32 sampleRate;
 };

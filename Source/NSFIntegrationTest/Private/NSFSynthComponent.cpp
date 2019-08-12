@@ -6,6 +6,7 @@
 bool UNSFSynthComponent::Init(int32& SampleRate)
 {
 	NumChannels = 1;
+	sampleRate = SampleRate;
 
 	//// Initialize the DSP objects
 	//Osc.Init(SampleRate);
@@ -13,14 +14,6 @@ bool UNSFSynthComponent::Init(int32& SampleRate)
 	//Osc.Start();
 
 	//NSF.SetDefaults(0, 0, 0);
-	ensure(NSF.LoadFile("i:\\wtf\\emu\\nsf\\rcr.nsf"));
-	//NSFPlayerConfig.SetValue
-	NSFPlayer.SetConfig(&NSFPlayerConfig);
-	NSFPlayer.Load(&NSF);
-	NSFPlayer.SetPlayFreq((double)SampleRate);
-	NSFPlayer.SetChannels(1);
-	NSFPlayer.SetSong(1);
-	NSFPlayer.Reset();
 
 	return true;
 }
@@ -32,6 +25,11 @@ int32 UNSFSynthComponent::OnGenerateAudio(float* OutAudio, int32 NumSamples)
 	//{
 	//	OutAudio[Sample] = Osc.Generate();
 	//}
+
+	if (!LoadedSuccessfully)
+	{
+		return 0;
+	}
 
 	tempBuffer.resize(NumSamples);
 
@@ -49,6 +47,24 @@ int32 UNSFSynthComponent::OnGenerateAudio(float* OutAudio, int32 NumSamples)
 
 void UNSFSynthComponent::OnStart()
 {
+	FString FullPath = FPaths::GameContentDir() + PathToMusic;
+	auto path = TCHAR_TO_ANSI(*FullPath);
+	LoadedSuccessfully = NSF.LoadFile(path);
+
+	if (!LoadedSuccessfully)
+	{
+		if (GEngine)
+			GEngine->AddOnScreenDebugMessage(-1, 3.0f, FColor::Orange, *FString::Printf(TEXT("Cannot load %s"), *FullPath));
+		return;
+	}
+	
+
+	//NSFPlayerConfig.SetValue
+	NSFPlayer.SetConfig(&NSFPlayerConfig);
+	NSFPlayer.Load(&NSF);
+	NSFPlayer.SetPlayFreq((double)sampleRate);
+	NSFPlayer.SetChannels(NumChannels);
+	NSFPlayer.SetSong(1);
 	NSFPlayer.Reset();
 }
 
